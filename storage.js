@@ -6,6 +6,8 @@ window.storage = (function() {
 
 	var self = this;
 	
+	this.typesPrefix = 'LocalStorageTypes.';
+	
 	//TODO: Allow functions to be stored
 	this.Types = {
 		'string': 0,
@@ -22,17 +24,17 @@ window.storage = (function() {
 	* @param {string=} type		Explicitly specified value type
 	*/
 	this.set = function (key, value, type) {
+	
 		type = typeof type !== 'undefined' ? type : typeof value;
 		if (!self.Types.hasOwnProperty(type)) {
 			throw new Error('Invalid value type.');
 		}
+	
+		// Store value
+		localStorage.setItem(key, value);
 		
-		var record = JSON.stringify({
-			value: JSON.stringify(value),
-			type: type,
-		});
-
-		localStorage.setItem(key, record);
+		// Store value type
+		localStorage.setItem(self.typesPrefix + key, type);
 	};
 
 	/**
@@ -41,16 +43,14 @@ window.storage = (function() {
 	* @return {*}
 	*/
 	this.get = function (key) {
-		var recordString = localStorage.getItem(key);
+		var valueString = localStorage.getItem(key);
+		var type = localStorage.getItem(self.typesPrefix + key);
 		
-		if (recordString == null) {
+		if (valueString == null) {
 			return null;
 		}
 		
-		var record = self.parseString(recordString, 'object');
-		
-		var value = self.parseString(record.value, record.type);
-		return value;
+		return self.parseString(valueString, type);
 	};
 	
 	/**
