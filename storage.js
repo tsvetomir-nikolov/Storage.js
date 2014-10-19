@@ -6,6 +6,7 @@ window.storage = (function() {
 
 	var self = this;
 	
+	//TODO: Allow functions to be stored
 	this.Types = {
 		'string': 0,
 		'number' : 1,
@@ -80,12 +81,8 @@ window.storage = (function() {
 	this.parseString = function (stringValue, type) {
 		var value;
 		
-		if (typeof value !== 'undefined') {
-			return undefined;
-		}
-		
-		if (typeof value == null) {
-			return null;
+		if (!stringValue) {
+			return stringValue;
 		}
 		
 		switch (type) {
@@ -109,15 +106,6 @@ window.storage = (function() {
 		}
 		
 		return value;
-	};
-	
-	this.stringToFunction = function(functionDefinition) {
-		
-		result = (function(functionDefinition) {
-			return eval(functionDefinition);
-		}(functionDefinition));
-		
-		return result;
 	};
 	
 	// Public Interface
