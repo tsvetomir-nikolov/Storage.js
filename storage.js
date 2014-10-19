@@ -69,6 +69,7 @@ window.storage = (function() {
 	*/
 	this.remove = function (key) {
 		localStorage.removeItem(key);
+		localStorage.removeItem(self.typesPrefix + key);
 	};
 	
 	/**
