@@ -17,9 +17,9 @@ window.storage = (function() {
 	
 	/**
 	* Saves the item at the key provided.
-	* @param {String} key		Key identifying the value
-	* @param {Object} value		Value to be stored
-	* @param {String} type		Explicitly specified value type
+	* @param {string} key		Key identifying the value
+	* @param {*} value			Value to be stored
+	* @param {string=} type		Explicitly specified value type
 	*/
 	this.set = function (key, value, type) {
 		type = typeof type !== 'undefined' ? type : typeof value;
@@ -37,8 +37,8 @@ window.storage = (function() {
 
 	/**
 	* Returns the item identified by it's key.
-	* @param {String} key		Key identifying the value
-	* @return {Object}
+	* @param {string} key		Key identifying the value
+	* @return {*}
 	*/
 	this.get = function (key) {
 		var recordString = localStorage.getItem(key);
@@ -55,8 +55,8 @@ window.storage = (function() {
 	
 	/**
 	* Determines whether value stored with the specified key exists.
-	* @param {String} key		Key identifying the value
-	* @return {Boolean}
+	* @param {string} key		Key identifying the value
+	* @return {boolean}
 	*/
 	this.exists = function (key) {
 		var recordString = localStorage.getItem(key);
@@ -65,7 +65,7 @@ window.storage = (function() {
 	
 	/**
 	* Removes the item identified by it's key.
-	* @param {String} key		Key identifying the value
+	* @param {string} key		Key identifying the value
 	*/
 	this.remove = function (key) {
 		localStorage.removeItem(key);
