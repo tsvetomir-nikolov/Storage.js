@@ -2,7 +2,7 @@
   Value type saving upon working with localStorage
 */
 
-window.storage = (function() {
+window.storage = new function() {
 
 	var self = this;
 	
@@ -50,7 +50,7 @@ window.storage = (function() {
 			return null;
 		}
 		
-		return self.parseString(valueString, type);
+		return parseString(valueString, type);
 	};
 	
 	/**
@@ -79,7 +79,7 @@ window.storage = (function() {
 		localStorage.clear();
 	};
 	
-	this.parseString = function (stringValue, type) {
+	var parseString = function (stringValue, type) {
 		var value;
 		
 		if (!stringValue) {
@@ -109,13 +109,4 @@ window.storage = (function() {
 		return value;
 	};
 	
-	// Public Interface
-	return {
-		set: set,
-		get: get,
-		exists: exists,
-		remove: remove,
-		clear: clear,
-	};
-	
-}());
+};
