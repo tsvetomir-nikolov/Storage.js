@@ -30,6 +30,10 @@ window.storage = new function() {
 			throw new Error('Invalid value type.');
 		}
 	
+		if (type === 'object') {
+			value = JSON.stringify(value);
+		}
+	
 		// Store value
 		localStorage.setItem(key, value);
 		
