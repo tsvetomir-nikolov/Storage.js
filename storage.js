@@ -2,34 +2,51 @@
   Value type saving upon working with localStorage
 */
 
-window.storage = new function() {
+storage = new function() {
 
 	var self = this;
 	
 	this.typesPrefix = 'LocalStorageTypes.';
 	
-	//TODO: Allow functions to be stored
 	this.Types = {
-		'string': 0,
-		'number' : 1,
-		'boolean' : 2,
-		'date' : 3,
-		'object' : 4,
+		String: 'string',
+		Number : 'number',
+		Boolean : 'boolean',
+		Date : 'date',
+		Object : 'object',
+		Undefined: 'undefined',
 	};
+	
+	this.allowedTypes = (function(){
+		var result = [],
+			i = 0;
+			
+		var keys =  Object.keys(self.Types);
+		for(i; i < keys.length; i++) {
+			result.push(self.Types[keys[i]]);
+		}
+		return result;
+	})();
 	
 	/**
 	* Saves the item at the key provided.
 	* @param {string} key		Key identifying the value
-	* @param {*} value			Value to be stored
+	* @param {*} value		Value to be stored
 	* @param {string=} type		Explicitly specified value type
 	*/
 	this.set = function (key, value, type) {
 	
 		type = typeof type !== 'undefined' ? type : typeof value;
-		if (!self.Types.hasOwnProperty(type)) {
+
+		if (this.allowedTypes.indexOf(type) < 0) {
 			throw new Error('Invalid value type.');
 		}
 	
+		// Set Date type
+		if (value && value.constructor.name == 'Date') {
+			type = self.Types.Date;
+		}
+		
 		if (type === 'object') {
 			value = JSON.stringify(value);
 		}
@@ -47,8 +64,10 @@ window.storage = new function() {
 	* @return {*}
 	*/
 	this.get = function (key) {
-		var valueString = localStorage.getItem(key);
-		var type = localStorage.getItem(self.typesPrefix + key);
+		var valueString, type;
+		
+		valueString = localStorage.getItem(key);
+		type = localStorage.getItem(self.typesPrefix + key);
 		
 		if (valueString == null) {
 			return null;
@@ -57,13 +76,19 @@ window.storage = new function() {
 		return parseString(valueString, type);
 	};
 	
+	this.getType = function (key) {
+		return localStorage.getItem(self.typesPrefix + key);
+	}
+	
 	/**
 	* Determines whether value stored with the specified key exists.
 	* @param {string} key		Key identifying the value
 	* @return {boolean}
 	*/
 	this.exists = function (key) {
-		var recordString = localStorage.getItem(key);
+		var recordString;
+
+		recordString = localStorage.getItem(key);
 		return recordString !== null;
 	};
 	
@@ -86,25 +111,28 @@ window.storage = new function() {
 	var parseString = function (stringValue, type) {
 		var value;
 		
-		if (!stringValue) {
+		if (stringValue === null || typeof stringValue === undefined) {
 			return stringValue;
 		}
 		
 		switch (type) {
-			case 'number':
+			case self.Types.String:
+				value = stringValue;
+				break;
+			case self.Types.Number:
 				value = Number(stringValue);
 				break;
-			case 'boolean':
+			case self.Types.Boolean:
 				value = Boolean(stringValue);
 				break;
-			case 'date':
+			case self.Types.Date:
 				value = new Date(stringValue);
 				break;
-			case 'object':
+			case self.Types.Object:
 				value = JSON.parse(stringValue);
 				break;
-			case 'string':
-				value = stringValue;
+			case self.Types.Undefined:
+				value = undefined;
 				break;
 			default:
 				throw new Error('Invalid value type.');
