@@ -1,4 +1,4 @@
-[![Build Status](https://drone.io/github.com/tsvetomir-nikolov/Storage.js/status.png)](https://drone.io/github.com/tsvetomir-nikolov/Storage.js/latest)
+[![Build Status](https://api.travis-ci.org/tsvetomir-nikolov/Storage.js.png?branch=master)](https://travis-ci.org/tsvetomir-nikolov/Storage.js)
 
 # Storage.js
 
