@@ -1,5 +1,6 @@
-Storage.js
-==========
+[![Build Status](https://drone.io/github.com/tsvetomir-nikolov/Storage.js/status.png)](https://drone.io/github.com/tsvetomir-nikolov/Storage.js/latest)
+
+# Storage.js
 
 Value type saving upon working with localStorage
 
