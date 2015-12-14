@@ -4,10 +4,26 @@
 
 Value type saving upon working with localStorage
 
+## Types:
+
+- String
+- Number
+- Boolean
+- Date
+- Object
+
 ## Examples:
 
+Using value of type number
+
 ![](https://raw.github.com/tsvetomir-nikolov/Storage.js/master/resources/Number.PNG)
+
+Boolean value
+
 ![](https://raw.github.com/tsvetomir-nikolov/Storage.js/master/resources/Bool.PNG)
+
+Object value
+
 ![](https://raw.github.com/tsvetomir-nikolov/Storage.js/master/resources/Object.PNG)
 
 ## Storage records
