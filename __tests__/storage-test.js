@@ -89,7 +89,7 @@ describe("Storage", function() {
 			it("should be saved with undefined type", function() {
 				spyOn(localStorage, 'setItem');
 				
-				var value = void 0;
+				var value = undefined;
 				storage.set(key, value);
 				
 				expect(localStorage.setItem).toHaveBeenCalledWith(jasmine.any(String), storage.Types.Undefined);
