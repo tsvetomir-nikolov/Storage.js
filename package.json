@@ -5,27 +5,18 @@
   "description": "Value type saving upon working with localStorage",
   "author": {
     "name": "Tsvetomi Nikolov",
-    "email": "cvetomir.nikolov@gmail.com",
-    "url": "http://tsvetomirnik.com"
+    "email": "cvetomir.nikolov@gmail.com"
   },
   "license": "MIT",
-  "dependencies": {},
   "devDependencies": {
-    "uglify-js": "2.4.14",
-    "jest-cli": "^0.4.0",
-    "localStorage": "^1.0.3",
-    "jasmine": "^2.2.1"
+    "jasmine": "^2.2.1",
+    "localStorage": "^1.0.3"
   },
-  "keywords": [
-    "javascript",
-    "storage"
-  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/tsvetomir-nikolov/storage.js"
   },
   "scripts": {
-    "build": "node ./build.js",
     "test": "jasmine"
   }
 }
