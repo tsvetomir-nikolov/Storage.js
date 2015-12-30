@@ -25,7 +25,7 @@ describe("Storage", function() {
 				spyOn(localStorage, 'setItem');
 				
 				var value = 1;
-				storage.set(key, value);
+				storage.setItem(key, value);
 				
 				expect(localStorage.setItem).toHaveBeenCalledWith(jasmine.any(String), storage.Types.Number);
 			});
@@ -37,8 +37,8 @@ describe("Storage", function() {
 			it("should be saved with string type", function() {
 				spyOn(localStorage, 'setItem');
 				
-				var value = 'string';
-				storage.set(key, value);
+				var value = 'Example';
+				storage.setItem(key, value);
 				
 				expect(localStorage.setItem).toHaveBeenCalledWith(jasmine.any(String), storage.Types.String);
 			});
@@ -51,20 +51,20 @@ describe("Storage", function() {
 				spyOn(localStorage, 'setItem');
 				
 				var value = true;
-				storage.set(key, value);
+				storage.setItem(key, value);
 				
 				expect(localStorage.setItem).toHaveBeenCalledWith(jasmine.any(String), storage.Types.Boolean);
 			});
 			
 		});
 		
-		describe("value of type object", function() {
+		describe("of type object", function() {
 		
 			it("should be saved with object type", function() {
 				spyOn(localStorage, 'setItem');
 				
-				var value = {};
-				storage.set(key, value);
+				var value = { prop1: 21 };
+				storage.setItem(key, value);
 				
 				expect(localStorage.setItem).toHaveBeenCalledWith(jasmine.any(String), storage.Types.Object);
 			});
@@ -76,8 +76,8 @@ describe("Storage", function() {
 			it("should be saved with date type", function() {
 				spyOn(localStorage, 'setItem');
 				
-				var value = new Date;
-				storage.set(key, value);
+				var value = new Date();
+				storage.setItem(key, value);
 				
 				expect(localStorage.setItem).toHaveBeenCalledWith(jasmine.any(String), storage.Types.Date);
 			});
@@ -90,7 +90,7 @@ describe("Storage", function() {
 				spyOn(localStorage, 'setItem');
 				
 				var value = undefined;
-				storage.set(key, value);
+				storage.setItem(key, value);
 				
 				expect(localStorage.setItem).toHaveBeenCalledWith(jasmine.any(String), storage.Types.Undefined);
 			});

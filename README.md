@@ -2,32 +2,46 @@
 
 # Storage.js
 
-Value type saving upon working with localStorage
+Value type saving upon working with localStorage.
 
-## Types:
-
+Works with the following types:
 - String
 - Number
 - Boolean
 - Date
 - Object
+- Array
 
 ## Examples:
 
 Using value of type number
 
-![](https://raw.github.com/tsvetomir-nikolov/Storage.js/master/resources/Number.PNG)
+```js
+storage.setItem('key', 21);
+storage.getItem('key'); // Returns 21
+```
 
 Boolean value
 
-![](https://raw.github.com/tsvetomir-nikolov/Storage.js/master/resources/Bool.PNG)
+```js
+storage.setItem('key', true);
+storage.getItem('key'); // Returns true
+```
 
 Object value
 
-![](https://raw.github.com/tsvetomir-nikolov/Storage.js/master/resources/Object.PNG)
+```js
+storage.setItem('key', { prop1: 21 });
+storage.getItem('key'); // Returns the object
+```
 
 ## Storage records
 
 Value types are stored in separated record from the value for better compatibility.
 
-![](https://raw.github.com/tsvetomir-nikolov/Storage.js/master/resources/Records.PNG)
+Resources:
+
+Key                | Value
+------------------ | -------------
+myKey              | {"prop1":21}
+myKey.ValueType    | object
