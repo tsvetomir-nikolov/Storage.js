@@ -1,4 +1,4 @@
-[![Build Status](https://api.travis-ci.org/tsvetomir-nikolov/Storage.js.png?branch=master)](https://travis-ci.org/tsvetomir-nikolov/Storage.js)
+[![Build Status](https://api.travis-ci.org/tsvetomirnik/Storage.js.png?branch=master)](https://travis-ci.org/tsvetomir-nikolov/Storage.js)
 
 # Storage.js
 
